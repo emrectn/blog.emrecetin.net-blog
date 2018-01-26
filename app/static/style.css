@@ -1,0 +1,144 @@
+.navbar-default {
+    background: #fff;
+}
+
+
+.nav.navbar-nav li a:hover {
+    background-color: #f5f5f5;
+    color: #008ed6;
+}
+
+#main-content{
+    position: relative;
+    float: left;
+    margin-top: 64px;
+
+}
+
+ #suggestion-list {
+    position: relative;
+    float: left;
+ }
+
+.post-image {
+    width: 100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.crop {
+    width: 100%;
+    max-height: 300px;
+    overflow: hidden;
+}
+
+#main-content .panel {
+    margin-bottom: 60px;
+}
+
+#main .panel-body {
+    padding-top: 50px;
+}
+
+#main-content .panel .footer{
+    padding: 5px;
+
+}
+
+#main-content .panel ul li{
+    font-size: 17px;
+}
+
+#main-content .panel ul .spancolor{
+    color: #274d6f;
+}
+
+#main-content .panel .panel-heading{
+    color: #274d6f;
+}
+.polaroid {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#suggestion-list li{
+    top: 50%;
+    vertical-align: middle;
+}
+
+#suggestion-list .fa-code-fork {
+    font-size: 18px;
+}
+
+.title {
+    font-size: 24px;
+}
+
+.semitransparent {
+    opacity: 0.7;
+    transition: opacity 0.5s;
+}
+
+.semitransparent:hover {
+    cursor: pointer;
+    cursor: hand;
+    opacity: 1.0;
+    transition: opacity 0.5s;
+}
+
+.date {
+    padding-bottom: 8px;
+}
+
+
+.tag {
+    margin-top: 12px;
+    margin-left: 4px;
+    float: right;
+}
+
+.indicator {
+    padding: 8px 4px;
+}
+
+.view {
+    overflow: hidden;
+    position: relative;
+    cursor: default;
+}
+
+.view .mask {
+    background-attachment: fixed;
+    transition: height .5s;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    background-color: rgba(46, 109, 164, 0.7);
+}
+
+.view img{
+    display: block;
+    position: relative;
+}
+
+.view:hover .mask {
+    height: 100%;
+    transition: height .5s;
+}
+
+.view .mask {
+    text-align: center;
+    font-size: 22px;
+}
+
+.view .mask p {
+    margin-top: calc(33%);
+    color: white;
+}
+
+.mousehover{
+    border-left: 1px;
+    border-color: rgb(46, 109, 164);
+}
