@@ -83,7 +83,9 @@ SUGGESTION_LIST = [
 
 @app.route('/')
 def index():
-    return render_template('index.html', posts=POSTS, subjects=SUBJECTS, sugestion_list=SUGGESTION_LIST)
+    return render_template(
+        'index.html', posts=POSTS, subjects=SUBJECTS,
+        sugestion_list=SUGGESTION_LIST)
 
 
 @app.route('/login')
@@ -91,6 +93,7 @@ def login():
     return render_template('login.html')
 
 
+# Decorator
 @app.route('/singup')
 def singup():
     return render_template('singup.html')

@@ -37,7 +37,7 @@ class User(Base):
     email = Column(String(50), unique=True)
     password = Column(String(50), nullable=False)
     userinfo = Column(String(250))
-    status = Column(Integer, nullable=False, default=UserStatus.INACTIVE.value)
+    status = Column(Integer, default=UserStatus.INACTIVE.value, nullable=False)
     rank = Column(Integer, default=UserRank.USER.value, nullable=False)
     token = Column(String(250))
     token_gen_time = Column(Integer)
@@ -94,7 +94,6 @@ class Article(Base):
                 'image': self.image,
                 'seen': self.seen,
                 'likes': self.likes,
-                'publish': self.publish,
                 # user relationshipte user ile bağlantı sağlanır.
                 'author': self.user.fullname}
 
@@ -144,7 +143,7 @@ class UserArticle(Base):
 
 
 # local veritabanı
-engine = create_engine('sqlite:///sqlalchemy_database.db')
+engine = create_engine(DB_URI)
 
 # tablolar veritabanına kaydedildi.
 Base.metadata.create_all(engine)

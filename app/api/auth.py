@@ -1,6 +1,6 @@
-from flask import Blueprint, request, abort, session
+from flask import Blueprint, request, abort
 from flask_restful import Api, Resource
-from schema import Schema, And, SchemaError, Use
+from schema import Schema, And, SchemaError
 from string import ascii_lowercase, digits
 from app.controllers.user import login
 import re
@@ -19,13 +19,25 @@ CREATE_AUTH_SCHEMA = Schema({
 })
 
 
+def get_data(f):
+    def func(*args, **kwargs):
+        try:
+            data = CREATE_AUTH_SCHEMA.validate(request.json)
+        except SchemaError:
+            print("Gecersiz veri seti")
+            abort(401)
+
+        kwargs['data'] = data
+        print(data)
+        return f(*args, **kwargs)
+    return func
+
+
 class Auth(Resource):
-    def post(self):
-        data = CREATE_AUTH_SCHEMA.validate(request.json)
 
-        print('email {} password {}'.format(data['email'], data['password']))
+    @get_data
+    def post(self, data):
         token = login(data['email'], data['password'])
-
         if not token:
             abort(401)
 

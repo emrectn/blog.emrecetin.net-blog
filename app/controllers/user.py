@@ -3,7 +3,7 @@ from app.models import DBSession, User, UserArticle
 
 def get_user(token):
     db = DBSession()
-    user = db.query(User).get(token)
+    user = db.query(User).filter(User.token == token).first()
     db.close()
 
     if not user:
@@ -11,26 +11,30 @@ def get_user(token):
     return user.to_dict()
 
 
-def get_user_without_token(email, password):
+def get_user_with_credentials(email, password):
     db = DBSession()
     u = db.query(User).filter(User.email == email,
                               User.password == password).first()
     if u:
-        return u.to_dict
+        return u.to_dict()
     return None
 
 
 def login(email, password):
+
     db = DBSession()
     u = db.query(User).filter(User.email == email,
                               User.password == password).first()
-
-    if u and (u.status == 0 or u.status == 1):
+    token = None
+    if u and (u.status == 0):
+        print("içerdema ")
         token = u.update_token()
+        print(token)
         db.commit()
     db.close()
 
     if not u:
+        print("Gecersiz kullanici")
         return None
     return token
 
@@ -79,12 +83,14 @@ def inactive_user(user_id):
     return None
 
 
-def change_password(user_id, password):
+def change_password(user_id, new_password, old_password):
     db = DBSession()
     user = db.query(User).get(user_id)
-    if user:
-        user.password = password
+
+    if user and user.password == old_password:
+        user.password = new_password
         db.commit()
         db.close
         return user.to_dict()
+    print("Gecersiz kullanıcı adı veya token")
     return None
