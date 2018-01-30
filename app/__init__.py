@@ -1,7 +1,8 @@
-from flask import Flask, render_template, session
+from flask import Flask, render_template
 from app.api.auth import bp as auth_bp
 from app.api.post import bp as post_bp
 from app.api.user import bp as user_bp
+from app.api.tag import bp as tag_bp
 
 
 app = Flask(__name__)
@@ -9,6 +10,8 @@ app.config.from_object('config')
 app.register_blueprint(auth_bp)
 app.register_blueprint(post_bp)
 app.register_blueprint(user_bp)
+app.register_blueprint(tag_bp)
+
 
 # Session secret key
 app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'

@@ -107,6 +107,10 @@ class Label(Base):
     def __repr__(self):
         return '<Label(id: {}, labelName: {}>'.format(self.id, self.name)
 
+    def to_dict(self):
+        return {'id': self.id,
+                'name': self.name}
+
 
 class Commment(Base):
     """docstring for Commment"""
