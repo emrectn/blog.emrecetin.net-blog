@@ -1,5 +1,6 @@
 ﻿
 
+
 # Demo Blog.Emrecetin.net
 
 I tried to create a blog site where I can write short articles basically on Python, Linux, C programming languages and Computer Engineering.
@@ -7,87 +8,86 @@ I tried to create a blog site where I can write short articles basically on Pyth
 
 ## API References
 
-**User Create**
+### User Create
 ```http
 POST /api/user
 HOST: domain.com
 {
-    'email': 'emre@emrecetin.net',
-    'password': 'emre123',
-    'fullname': 'Emre Cetin'
+    "email": "EMAIL",
+    "password": "PASSWORD",
+    "fullname": "NAME SURNAME"
 }
 ```
 
-**User Delete**
+### User Delete
 ```http
 DELETE /api/user
 HOST: domain.com
 X-Token: as8as9-asdas65-zxx4c8-qweqw
 
-// If you want delete user, you have to be admin or the user
 ```
 
-**User Change Password**
+### User Change Password
 ```http
 PUT /api/user
 HOST: domain.com
 X-Token: as8as9-asdas65-zxx4c8-qweqw
 
 {
-    'new_password': 'emre123',
-    'old_password': 'emre12345'
+    "new_password": "NEW_PASSWORD",
+    "old_password": "OLD_PASSWORD"
 }
 ```
 
-**Auth**
+### Auth
 ```http
 POST /api/auth
 HOST: domain.com
 
 {
-    'email': 'emre@emrecetin.net',
-    'password': 'emre123'
+    "email": "EMAIL",
+    "password": "PASSWORD"
 }
 ```
 
-**Post Get**
+### Post Get
 ```http
-GET /api/post?post_id={post id}
+GET /api/post?post_id=POST_ID
 HOST: domain.com
 ```
-**Post Get All**
+### Post Get All
 ```http
 GET /api/posts
 HOST: domain.com
 ```
 
-**Post Create**
+### Post Create
 ```http
 POST /api/post
 HOST: domain.com
 X-Token: as8as9-asdas65-zxx4c8-qweqw
 
 {
-    'title': 'Hello World!',
-    'text': 'Technology develop like a raw every year...',
-    'date': '2018-01-12 20:01:09.123132',
-    'image': '/static/name.png'  //Optional
+    "title": "ARTICLE TITLE",
+    "text": "ARTICLE TEXT",
+    "date": "2018-01-12 20:01:09.123132",
+    "image": "IMAGE_PATH"  //Optional
 }
 ```
-**Post Delete**
+### Post Delete
 ```http
-DELETE /api/post?post_id{post id}
+DELETE /api/post?post_id=POST_ID
 HOST: domain.com
 X-Token: as8as9-asdas65-zxx4c8-qweqw
 ```
-**Label Create**
+### Label Create
 ```http
 POST /api/label
 HOST: domain.com
 X-Token: as8as9-asdas65-zxx4c8-qweqw
 
 {
-	'labels': 'Education',
-	'post_id': '1',
+    "labels": "LABEL",
+    "post_id": "POST_ID",
 }
 ```
