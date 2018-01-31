@@ -1,0 +1,28 @@
+###########################
+# Talia VM HyperV convert #
+###########################
+
+# .ova dosyasinin extract edilmesi
+.ova dosyası program(winrar) ile açılarak vmdk dosyası elde edildi.
+
+# .vmdk convert -> .vhdx
+.vmdk dosyasının .vhdx formatına çevrilmesi için Windows uygulaması Microsoft Virtual Machine 3.0 kullanıldı.
+Program linki: https://www.microsoft.com/en-us/download/details.aspx?id=42497
+
+# Powershell ile Convert işlemi
+Yönetici olarak Powershell de sırayla şu komutlar yazıldı.
+
+-Mic.Soft.Con. Programının Modulu import edilir.
+Import-Module "C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.psd1"
+
+-.vmdk convert --> vhdx işlemi başlatılır.
+ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath C:\Users\ThinkCentre\Desktop\ARGE_TaliaLog_Demo-disk1.vmdk -VhdFormat vhdx -DestinationLiteralPath C:\Users\ThinkCentre\Desktop\output
+
+#######################################
+
+# Dipnot:
+vmdk->vhd convert edilmek istenirse Son aşamadaki "-VhdFormat vhd" ayarlanır.
+
+# Kaynak:
+https://blogs.msdn.microsoft.com/timomta/2015/06/11/how-to-convert-a-vmware-vmdk-to-hyper-v-vhd/
+https://www.sourceonetechnology.com/convert-vmware-vmdk-files-into-hyper-v-vhd/
