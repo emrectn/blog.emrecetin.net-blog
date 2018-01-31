@@ -12,6 +12,7 @@ def get_label(label_name):
 
 def create_label(label_name):
     db = DBSession()
+    print('yeni label : {}'.format(label_name))
     p = Label(name=label_name)
     db.add(p)
     db.commit()
