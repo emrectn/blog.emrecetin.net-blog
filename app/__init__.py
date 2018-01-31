@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from app.api.auth import bp as auth_bp
 from app.api.post import bp as post_bp
 from app.api.user import bp as user_bp
-from app.api.tag import bp as tag_bp
+from app.api.label import bp as label_bp
 
 
 app = Flask(__name__)
@@ -10,7 +10,7 @@ app.config.from_object('config')
 app.register_blueprint(auth_bp)
 app.register_blueprint(post_bp)
 app.register_blueprint(user_bp)
-app.register_blueprint(tag_bp)
+app.register_blueprint(label_bp)
 
 
 # Session secret key

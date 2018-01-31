@@ -68,9 +68,10 @@ class Post(Resource):
             abort(400)
 
         if is_authorized(token, post_id):
-            delete_post(post_id)
-            return {'status': 'OK'}
-        return None
+            status = delete_post(post_id)
+            if status:
+                return {'status': 'OK'}
+        abort(401)
 
 
 class Posts(Resource):

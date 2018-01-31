@@ -18,6 +18,7 @@ def delete_post(post_id):
         db.commit()
         db.close()
         return {'status': 'OK'}
+    db.close()
     return None
 
 
@@ -39,4 +40,5 @@ def add_post(title, text, date, user_id, image="/static/0.jpg"):
                 image=image)
     db.add(p)
     db.commit()
+    db.close()
     return True

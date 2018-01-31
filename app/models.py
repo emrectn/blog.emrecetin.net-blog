@@ -132,18 +132,12 @@ class ArticleLabel(Base):
     id = Column(Integer, primary_key=True)
     label_id = Column(Integer, ForeignKey('labels.id'))
     article_id = Column(Integer, ForeignKey('articles.id'))
+    label = relationship("Label", cascade="all, delete")
+    article = relationship("Article", cascade="all, delete")
 
     def __repr__(self):
         return '<Commment(id: {}, label_id: {}>, article_id: {}'.format(
             self.id, self.label_id, self.article_id)
-
-
-class UserArticle(Base):
-    """docstring for UserArticle"""
-    __tablename__ = 'users_articles'
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'))
-    article_id = Column(Integer, ForeignKey('articles.id'))
 
 
 # local veritabanı
