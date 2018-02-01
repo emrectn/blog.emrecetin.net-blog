@@ -112,22 +112,30 @@ class Label(Base):
                 'name': self.name}
 
 
-class Commment(Base):
-    """docstring for Commment"""
+class Comment(Base):
+    """docstring for Comment"""
     __tablename__ = 'comments'
     id = Column(Integer, primary_key=True)
     text = Column(String(200), nullable=False)
     date = Column(DateTime, nullable=False)
     user_id = Column(Integer, ForeignKey('users.id'))
     article_id = Column(Integer, ForeignKey('articles.id'))
+    likes = Column(Integer, default=0)
 
     def __repr__(self):
-        return '<Commment(id: {}, text: {}>'.format(
+        return '<Comment(id: {}, text: {}>'.format(
             self.id, self.text)
+
+    def to_dict(self):
+        return{'id': self.id,
+               'text': self.text,
+               'date': self.date,
+               'user_id': self.user_id,
+               'article_id': self.article_id}
 
 
 class ArticleLabel(Base):
-    """docstring for Commment"""
+    """docstring for Comment"""
     __tablename__ = 'articles_labels'
     id = Column(Integer, primary_key=True)
     label_id = Column(Integer, ForeignKey('labels.id'))
@@ -136,7 +144,7 @@ class ArticleLabel(Base):
     article = relationship("Article", cascade="all, delete")
 
     def __repr__(self):
-        return '<Commment(id: {}, label_id: {}>, article_id: {}'.format(
+        return '<ArticleLabel(id: {}, label_id: {}>, article_id: {}'.format(
             self.id, self.label_id, self.article_id)
 
 

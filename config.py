@@ -1,2 +1,2 @@
 SECRET_KEY = '#VERYHARDKEY#'
-DB_URI = 'sqlite:///sqlalchemy_database.db'
+DB_URI = 'mysql://MARIA:@localhost:3306/testdb'

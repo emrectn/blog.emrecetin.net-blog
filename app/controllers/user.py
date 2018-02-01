@@ -4,21 +4,26 @@ from app.models import DBSession, User, Article
 def get_user(token):
     db = DBSession()
     user = db.query(User).filter(User.token == token).first()
-    db.close()
 
-    if not user:
-        return None
-    return user.to_dict()
+    if user:
+        data = user.to_dict()
+    else:
+        data = None
+    db.close()
+    return data
 
 
 def get_user_with_credentials(email, password):
     db = DBSession()
     u = db.query(User).filter(User.email == email,
                               User.password == password).first()
-    db.close()
+
     if u:
-        return u.to_dict()
-    return None
+        data = u.to_dict()
+    else:
+        data = None
+    db.close()
+    return data
 
 
 def login(email, password):
@@ -75,8 +80,9 @@ def create_user(email, password, fullname, userinfo="..."):
                 userinfo=userinfo)
     db.add(user)
     db.commit()
+    data = user.to_dict()
     db.close()
-    return user.to_dict()
+    return data
 
 
 def inactive_user(user_id):
@@ -97,7 +103,8 @@ def change_password(user_id, new_password, old_password):
     if user and user.password == old_password:
         user.password = new_password
         db.commit()
+        data = user.to_dict()
         db.close()
-        return user.to_dict()
+        return data
     print("Gecersiz kullanıcı adı veya token")
     return None
