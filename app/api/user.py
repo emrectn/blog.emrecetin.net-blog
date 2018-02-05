@@ -12,13 +12,11 @@ api = Api(bp)
 # Format olusturma, sadece belirli bir formatı kabul eder
 EMAIL_PATTERN = re.compile('[{}{}.]+@[{}]+.[{}]'.format(
     ascii_lowercase, digits, ascii_lowercase, ascii_lowercase))
-ASCII_LOWERCASE = re.compile('[{} çşğıüö]+'.format(ascii_lowercase))
-
 
 CREATE_USER_SCHEMA = Schema({
     'email': And(str, lambda s: 0 < len(s) <= 60, EMAIL_PATTERN.match),
     'password': And(str, lambda s: len(s) >= 4),
-    'fullname': And(str, lambda s: 5 < len(s) <= 80, ASCII_LOWERCASE.match),
+    'fullname': And(str, lambda s: 5 < len(s) <= 80),
     Optional('userinfo'): str,
 })
 
@@ -37,30 +35,19 @@ def authorized_with_token(f):
     return func
 
 
-def authorized_with_credentials(f):
-    def func(*args, **kwargs):
+class User(Resource):
+
+    def post(self):
         try:
             data = CREATE_USER_SCHEMA.validate(request.json)
         except SchemaError:
             print("Gecersiz Veri seti schema Error")
-            abort(403)
-
-        exists = get_user_with_credentials(data['email'], data['password'])
-        if exists:
-            print("Bu kullanici: {} zaten var".format(data['email']))
             abort(400)
 
-        kwargs['data'] = data
-        return f(*args, **kwargs)
-    return func
-
-
-class User(Resource):
-
-    @authorized_with_credentials
-    def post(self, data):
-        create_user(**data)
-        return{'status': 'OK'}
+        status = create_user(**data)
+        if status:
+            return{'status': 'OK'}
+        abort(403)
 
     @authorized_with_token
     def delete(self, user):

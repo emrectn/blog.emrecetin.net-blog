@@ -90,4 +90,52 @@ X-Token: as8as9-asdas65-zxx4c8-qweqw
     "labels": "LABEL",
     "post_id": "POST_ID",
 }
+
+```
+### Label Delete
+```http
+DELETE /api/label?label_id=LABEL_ID
+HOST: domain.com
+X-Token: as8as9-asdas65-zxx4c8-qweqw
+
+{
+    "labels": "LABEL",
+    "post_id": "POST_ID",
+}
+```
+
+### Comment Get (all comments a post)
+```http
+GET /api/comment?post_id=POST_ID
+HOST: domain.com
+```
+### Comment Get (all comments a user)
+```http
+GET /api/comments?user_id=USER_ID
+HOST: domain.com
+```
+
+### Comment Create
+```http
+POST /api/comment?post_id=POST_ID
+HOST: domain.com
+X-Token: as8as9-asdas65-zxx4c8-qweqw
+
+{
+    "text": "TEXT",
+    "date": "2018-01-12 20:01:09.123132",
+}
+```
+### Comment Delete
+```http
+DELETE /api/comment?comment_id=COMMENT_ID
+HOST: domain.com
+X-Token: as8as9-asdas65-zxx4c8-qweqw
+```
+
+### Comment Publish
+```http
+PUT /api/comment?comment_id=COMMENT_ID
+HOST: domain.com
+X-Token: as8as9-asdas65-zxx4c8-qweqw
 ```

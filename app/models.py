@@ -65,6 +65,33 @@ class User(Base):
         }
 
 
+class ArticleLabel(Base):
+    """docstring for Comment"""
+    __tablename__ = 'articles_labels'
+    id = Column(Integer, primary_key=True)
+    article_id = Column(Integer, ForeignKey("articles.id", onupdate='cascade', ondelete='cascade'))
+    label_id = Column(Integer, ForeignKey("labels.id", onupdate='cascade', ondelete='cascade'))
+
+    def __repr__(self):
+        return '<ArticleLabel(id: {}, label_id: {}>, article_id: {}'.format(
+            self.id, self.label_id, self.article_id)
+
+
+class Label(Base):
+    """docstring for Label"""
+    __tablename__ = 'labels'
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    article_label = relationship(ArticleLabel, backref="label", passive_deletes=True)
+
+    def __repr__(self):
+        return '<Label(id: {}, labelName: {}>'.format(self.id, self.name)
+
+    def to_dict(self):
+        return {'id': self.id,
+                'name': self.name}
+
+
 class Article(Base):
     """docstring for Article"""
     __tablename__ = 'articles'
@@ -75,9 +102,11 @@ class Article(Base):
     image = Column(String, default='/static/0.jpg')
     seen = Column(Integer, default=0)
     likes = Column(Integer, default=0)
+    unlikes = Column(Integer, default=0)
     publish = Column(Integer, nullable=False, default=Publish.ON_AIR.value)
     user_id = Column(Integer, ForeignKey('users.id'))
     # relationship Join yapmaya yarar.
+    article_label = relationship(ArticleLabel, backref="article", passive_deletes=True)
     user = relationship('User')
 
     # Geri döndürğümüz format
@@ -94,22 +123,11 @@ class Article(Base):
                 'image': self.image,
                 'seen': self.seen,
                 'likes': self.likes,
+                'unlikes': self.unlikes,
                 # user relationshipte user ile bağlantı sağlanır.
                 'author': self.user.fullname}
 
 
-class Label(Base):
-    """docstring for Label"""
-    __tablename__ = 'labels'
-    id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-
-    def __repr__(self):
-        return '<Label(id: {}, labelName: {}>'.format(self.id, self.name)
-
-    def to_dict(self):
-        return {'id': self.id,
-                'name': self.name}
 
 
 class Comment(Base):
@@ -121,31 +139,23 @@ class Comment(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     article_id = Column(Integer, ForeignKey('articles.id'))
     likes = Column(Integer, default=0)
+    unlikes = Column(Integer, default=0)
+    publish = Column(Integer, default=Publish.ON_AIR.value)
 
     def __repr__(self):
         return '<Comment(id: {}, text: {}>'.format(
             self.id, self.text)
 
     def to_dict(self):
-        return{'id': self.id,
-               'text': self.text,
-               'date': self.date,
-               'user_id': self.user_id,
-               'article_id': self.article_id}
+        return {'id': self.id,
+                'text': self.text,
+                'date': str(self.date),
+                'user_id': self.user_id,
+                'article_id': self.article_id,
+                'likes': self.likes,
+                'unlikes': self.unlikes,
+                'publish': self.publish}
 
-
-class ArticleLabel(Base):
-    """docstring for Comment"""
-    __tablename__ = 'articles_labels'
-    id = Column(Integer, primary_key=True)
-    label_id = Column(Integer, ForeignKey('labels.id'))
-    article_id = Column(Integer, ForeignKey('articles.id'))
-    label = relationship("Label", cascade="all, delete")
-    article = relationship("Article", cascade="all, delete")
-
-    def __repr__(self):
-        return '<ArticleLabel(id: {}, label_id: {}>, article_id: {}'.format(
-            self.id, self.label_id, self.article_id)
 
 
 # local veritabanı

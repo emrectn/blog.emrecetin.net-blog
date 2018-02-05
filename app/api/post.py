@@ -43,6 +43,11 @@ class Post(Resource):
         if not user:
             print("Boyle bir kullanici bulunamadi")
             abort(401)
+
+        if user['rank'] not in (0, 1):
+            print("Yetkisiz kullanici : {}".format(user['rank']))
+            abort(403)
+
         try:
             data = CREATE_POST_SCHEMA.validate(request.json)
             # add user_id to dictionary

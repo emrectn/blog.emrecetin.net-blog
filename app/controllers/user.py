@@ -1,4 +1,5 @@
 from app.models import DBSession, User, Article
+from sqlalchemy.exc import IntegrityError
 
 
 def get_user(token):
@@ -79,8 +80,13 @@ def create_user(email, password, fullname, userinfo="..."):
                 fullname=fullname,
                 userinfo=userinfo)
     db.add(user)
-    db.commit()
-    data = user.to_dict()
+    try:
+        db.commit()
+    except IntegrityError:
+        print("Bu kullanıcı zaten var")
+        db.rollback()
+        user = None
+    data = user.to_dict() if user else None
     db.close()
     return data
 

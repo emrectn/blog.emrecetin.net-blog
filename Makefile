@@ -1,5 +1,5 @@
 run:
-	python run.py
+	python3 run.py
 install:
-	pip install -r requirements.txt
+	pip3 install -r requirements.txt
 
