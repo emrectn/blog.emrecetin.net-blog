@@ -14,7 +14,6 @@ def get_label(label_name):
 
 def create_label(label_name):
     db = DBSession()
-    print('yeni label : {}'.format(label_name))
     p = Label(name=label_name)
     db.add(p)
     db.commit()
@@ -26,14 +25,12 @@ def get_or_create_label(label_name):
 
     data = get_label(label_name)
     if data:
-        print("Boyle bir etiket var")
         return data.id
 
     create_label(label_name)
 
     data = get_label(label_name)
     if data:
-        print("Yeni etiket üretildi")
         return data.id
     return None
 
@@ -50,6 +47,7 @@ def add_label_article(label_id, post_id):
     if not status:
         create_label_article(label_id, post_id)
     else:
+        print("Bu posta daha önce bu etiket eklenmiş")
         abort(403)
 
 

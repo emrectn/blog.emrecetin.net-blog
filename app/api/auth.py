@@ -9,9 +9,7 @@ bp = Blueprint('auth', __name__)
 api = Api(bp)
 
 # Format olusturma sadece belirli formatı kabul eder.
-USERNAME_PATTERN = re.compile('[{}{}.]+@[{}]+.[{}]'.format(
-    ascii_lowercase, digits, ascii_lowercase, ascii_lowercase))
-
+USERNAME_PATTERN = re.compile('^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9.-]+$')
 
 CREATE_AUTH_SCHEMA = Schema({
     'email': And(str, lambda s: 0 < len(s) <= 60, USERNAME_PATTERN.match),
@@ -28,7 +26,6 @@ def get_data(f):
             abort(401)
 
         kwargs['data'] = data
-        print(data)
         return f(*args, **kwargs)
     return func
 

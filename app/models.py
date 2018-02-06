@@ -8,6 +8,7 @@ from uuid import uuid4
 from time import time
 
 from enum import Enum
+import hashlib
 
 Base = declarative_base()
 
@@ -47,6 +48,8 @@ class User(Base):
 
     def update_token(self):
         token = str(uuid4())
+        # m = hashlib.sha256()
+        # username_token = m.update(b"{}".format(self.asdemail)).hexdigest()
         self.token = token
         self.token_gen_time = int(time())
         return token
@@ -69,8 +72,8 @@ class ArticleLabel(Base):
     """docstring for Comment"""
     __tablename__ = 'articles_labels'
     id = Column(Integer, primary_key=True)
-    article_id = Column(Integer, ForeignKey("articles.id", onupdate='cascade', ondelete='cascade'))
-    label_id = Column(Integer, ForeignKey("labels.id", onupdate='cascade', ondelete='cascade'))
+    article_id = Column(Integer, ForeignKey("articles.id", onupdate='CASCADE', ondelete='CASCADE'))
+    label_id = Column(Integer, ForeignKey("labels.id", onupdate='CASCADE', ondelete='CASCADE'))
 
     def __repr__(self):
         return '<ArticleLabel(id: {}, label_id: {}>, article_id: {}'.format(
@@ -92,6 +95,33 @@ class Label(Base):
                 'name': self.name}
 
 
+class Comment(Base):
+    """docstring for Comment"""
+    __tablename__ = 'comments'
+    id = Column(Integer, primary_key=True)
+    text = Column(String(200), nullable=False)
+    date = Column(DateTime, nullable=False)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    article_id = Column(Integer, ForeignKey('articles.id', onupdate='CASCADE', ondelete='CASCADE'))
+    likes = Column(Integer, default=0)
+    unlikes = Column(Integer, default=0)
+    publish = Column(Integer, default=Publish.ON_AIR.value)
+
+    def __repr__(self):
+        return '<Comment(id: {}, text: {}>'.format(
+            self.id, self.text)
+
+    def to_dict(self):
+        return {'id': self.id,
+                'text': self.text,
+                'date': str(self.date),
+                'user_id': self.user_id,
+                'article_id': self.article_id,
+                'likes': self.likes,
+                'unlikes': self.unlikes,
+                'publish': self.publish}
+
+
 class Article(Base):
     """docstring for Article"""
     __tablename__ = 'articles'
@@ -107,6 +137,7 @@ class Article(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     # relationship Join yapmaya yarar.
     article_label = relationship(ArticleLabel, backref="article", passive_deletes=True)
+    comment = relationship(Comment, backref="comments", passive_deletes=True)
     user = relationship('User')
 
     # Geri döndürğümüz format
@@ -126,36 +157,6 @@ class Article(Base):
                 'unlikes': self.unlikes,
                 # user relationshipte user ile bağlantı sağlanır.
                 'author': self.user.fullname}
-
-
-
-
-class Comment(Base):
-    """docstring for Comment"""
-    __tablename__ = 'comments'
-    id = Column(Integer, primary_key=True)
-    text = Column(String(200), nullable=False)
-    date = Column(DateTime, nullable=False)
-    user_id = Column(Integer, ForeignKey('users.id'))
-    article_id = Column(Integer, ForeignKey('articles.id'))
-    likes = Column(Integer, default=0)
-    unlikes = Column(Integer, default=0)
-    publish = Column(Integer, default=Publish.ON_AIR.value)
-
-    def __repr__(self):
-        return '<Comment(id: {}, text: {}>'.format(
-            self.id, self.text)
-
-    def to_dict(self):
-        return {'id': self.id,
-                'text': self.text,
-                'date': str(self.date),
-                'user_id': self.user_id,
-                'article_id': self.article_id,
-                'likes': self.likes,
-                'unlikes': self.unlikes,
-                'publish': self.publish}
-
 
 
 # local veritabanı

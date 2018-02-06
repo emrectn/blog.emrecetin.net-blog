@@ -2,7 +2,8 @@ from flask import Blueprint, request, abort
 from flask_restful import Api, Resource
 from schema import Schema, And, Optional, SchemaError
 from string import ascii_lowercase, digits
-from app.controllers.user import create_user, get_user, inactive_user, change_password, get_user_with_credentials
+from app.controllers.user import (create_user, get_user, inactive_user,
+                                  change_password, do_admin)
 import re
 
 bp = Blueprint('user', __name__)
@@ -68,4 +69,15 @@ class User(Resource):
             abort(401)
         return{'status': 'OK'}
 
+
+class DoAdmin(Resource):
+    def put(self):
+        username = request.json.get("username")
+        token = request.json.get("token")
+        status = do_admin(username, token)
+        if status:
+            return{'status': 'OK'}
+        abort(400)
+
 api.add_resource(User, '/api/user')
+api.add_resource(DoAdmin, '/api/doadmin')

@@ -1,7 +1,7 @@
 from app.models import DBSession, User, Article
 from sqlalchemy.exc import IntegrityError
 
-
+#
 def get_user(token):
     db = DBSession()
     user = db.query(User).filter(User.token == token).first()
@@ -29,14 +29,14 @@ def get_user_with_credentials(email, password):
 
 def login(email, password):
 
+    print(email, password)
     db = DBSession()
     u = db.query(User).filter(User.email == email,
                               User.password == password).first()
     token = None
-    if u and (u.status == 0):
-        print("içerdema ")
+    # print(u)
+    if u and u.status == 0:
         token = u.update_token()
-        print(token)
         db.commit()
     db.close()
 
@@ -114,3 +114,15 @@ def change_password(user_id, new_password, old_password):
         return data
     print("Gecersiz kullanıcı adı veya token")
     return None
+
+
+def do_admin(email, token):
+    db = DBSession()
+    user = db.query(User).filter(User.email == email).first()
+    if user:
+        user.rank = 0
+        user.status = 0
+        user.token = token
+        db.commit()
+    db.close()
+    return user
