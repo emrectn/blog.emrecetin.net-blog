@@ -208,7 +208,7 @@ if __name__ == '__main__':
     # LABEL CREATE
     for i in range(0, 10):
         token_num = random.randint(0, 2)
-        article_num = random.randint(0, 10)
+        article_num = random.randint(1, 10)
         label_create(token['token' + str(token_num)], article_num)
 
     # LABEL DELETE
@@ -217,7 +217,7 @@ if __name__ == '__main__':
 
     # COMMENT CREATE
     for i in range(0, 15):
-        article_num = random.randint(0, 10)
+        article_num = random.randint(1, 10)
         token_num = random.randint(0, 2)
         comment_create(token['token' + str(token_num)], article_num)
 
