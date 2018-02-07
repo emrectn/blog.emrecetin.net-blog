@@ -139,3 +139,10 @@ PUT /api/comment?comment_id=COMMENT_ID
 HOST: domain.com
 X-Token: as8as9-asdas65-zxx4c8-qweqw
 ```
+
+### Test Script
+```text
+Python Script that test all api
+```
+
+![test_script](https://user-images.githubusercontent.com/29972884/35908498-f1af6552-0c01-11e8-8bd4-e41eb38081d0.gif)
