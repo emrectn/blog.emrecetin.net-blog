@@ -115,21 +115,21 @@ def post_delete(token, post_id):
     return print("{} \n".format(r.json()))
 
 
-def label_create(token, article_num):
+def tag_create(token, article_num):
     print("LABEL CREATE")
     r = requests.post(
-        BASE_URL + '/label',
+        BASE_URL + '/tag',
         headers={'X-Token': token},
-        json={'labels': random.choice(TITLES),
+        json={'tags': random.choice(TITLES),
               'post_id': article_num})
 
     return print("{} \n".format(r.json()))
 
 
-def label_delete(token, label_id):
+def tag_delete(token, tag_id):
     print("LABEL DELETE")
     r = requests.delete(
-        BASE_URL + '/label?label_id=' + str(label_id),
+        BASE_URL + '/tag?tag_id=' + str(tag_id),
         headers={'X-Token': token})
 
     return print("{} \n".format(r.json()))
@@ -208,16 +208,16 @@ if __name__ == '__main__':
     # LABEL CREATE
     for i in range(0, 10):
         token_num = random.randint(0, 2)
-        article_num = random.randint(0, 10)
-        label_create(token['token' + str(token_num)], article_num)
+        article_num = random.randint(1, 10)
+        tag_create(token['token' + str(token_num)], article_num)
 
     # LABEL DELETE
-    token_num = random.randint(0, 2)
-    label_delete(token['token' + str(token_num)], LABEL_ID)
+    # token_num = random.randint(0, 2)
+    # tag_delete(token['token' + str(token_num)], LABEL_ID)
 
     # COMMENT CREATE
     for i in range(0, 15):
-        article_num = random.randint(0, 10)
+        article_num = random.randint(1, 10)
         token_num = random.randint(0, 2)
         comment_create(token['token' + str(token_num)], article_num)
 
