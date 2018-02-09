@@ -1,4 +1,4 @@
-﻿
+
 
 
 # Demo Blog.Emrecetin.net
@@ -80,26 +80,26 @@ DELETE /api/post?post_id=POST_ID
 HOST: domain.com
 X-Token: as8as9-asdas65-zxx4c8-qweqw
 ```
-### Label Create
+### Tag Create
 ```http
-POST /api/label
+POST /api/tag
 HOST: domain.com
 X-Token: as8as9-asdas65-zxx4c8-qweqw
 
 {
-    "labels": "LABEL",
+    "tags": "LABEL",
     "post_id": "POST_ID",
 }
 
 ```
-### Label Delete
+### Tag Delete
 ```http
-DELETE /api/label?label_id=LABEL_ID
+DELETE /api/tag?tag_id=LABEL_ID
 HOST: domain.com
 X-Token: as8as9-asdas65-zxx4c8-qweqw
 
 {
-    "labels": "LABEL",
+    "tags": "LABEL",
     "post_id": "POST_ID",
 }
 ```

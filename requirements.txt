@@ -2,4 +2,6 @@ flask
 flask_restful
 sqlalchemy
 schema
-
+postgresql
+postgresql-contrib
+python3-psycopg2

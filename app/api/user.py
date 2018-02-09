@@ -6,7 +6,7 @@ from app.controllers.user import (create_user, get_user, inactive_user,
                                   change_password, do_admin)
 import re
 
-bp = Blueprint('user', __name__)
+bp = Blueprint('user_api', __name__)
 api = Api(bp)
 
 

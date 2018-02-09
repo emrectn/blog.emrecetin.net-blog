@@ -1,11 +1,11 @@
 from flask import Blueprint, request, abort
 from flask_restful import Api, Resource
-from app.controllers.label import add_label, delete_label
+from app.controllers.tag import add_tag, delete_tag
 from app.controllers.user import get_user
 from app.controllers.post import delete_post
 
 
-bp = Blueprint('label', __name__)
+bp = Blueprint('tag_api', __name__)
 api = Api(bp)
 
 
@@ -22,26 +22,26 @@ def authorized_with_token(f):
     return func
 
 
-class Label(Resource):
+class Tag(Resource):
 
     @authorized_with_token
     def post(self, user):
-        data = request.json.get("labels")
+        data = request.json.get("tags")
         post_id = request.json.get("post_id")
 
         if user['rank'] in (0, 1):
 
-            add_label(data, post_id)
+            add_tag(data, post_id)
             return {'status': 'OK'}
         abort(401)
 
     @authorized_with_token
     def delete(self, user):
-        label_id = request.args.get("label_id")
-        status = delete_label(label_id)
+        tag_id = request.args.get("tag_id")
+        status = delete_tag(tag_id)
         if status:
             return {'status': 'OK'}
         abort(400)
 
 
-api.add_resource(Label, '/api/label')
+api.add_resource(Tag, '/api/tag')

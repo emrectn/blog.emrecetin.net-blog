@@ -9,7 +9,7 @@ from app.controllers.comment import (get_article_comments, get_user_comments,
 from app.controllers.user import get_user, is_admin
 
 
-bp = Blueprint('comment', __name__)
+bp = Blueprint('comment_api', __name__)
 api = Api(bp)
 
 

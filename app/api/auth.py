@@ -5,7 +5,7 @@ from string import ascii_lowercase, digits
 from app.controllers.user import login
 import re
 
-bp = Blueprint('auth', __name__)
+bp = Blueprint('auth_api', __name__)
 api = Api(bp)
 
 # Format olusturma sadece belirli formatı kabul eder.

@@ -68,27 +68,27 @@ class User(Base):
         }
 
 
-class ArticleLabel(Base):
+class ArticleTag(Base):
     """docstring for Comment"""
-    __tablename__ = 'articles_labels'
+    __tablename__ = 'articles_tags'
     id = Column(Integer, primary_key=True)
     article_id = Column(Integer, ForeignKey("articles.id", onupdate='CASCADE', ondelete='CASCADE'))
-    label_id = Column(Integer, ForeignKey("labels.id", onupdate='CASCADE', ondelete='CASCADE'))
+    tag_id = Column(Integer, ForeignKey("tags.id", onupdate='CASCADE', ondelete='CASCADE'))
 
     def __repr__(self):
-        return '<ArticleLabel(id: {}, label_id: {}>, article_id: {}'.format(
-            self.id, self.label_id, self.article_id)
+        return '<ArticleTag(id: {}, tag_id: {}>, article_id: {}'.format(
+            self.id, self.tag_id, self.article_id)
 
 
-class Label(Base):
-    """docstring for Label"""
-    __tablename__ = 'labels'
+class Tag(Base):
+    """docstring for Tag"""
+    __tablename__ = 'tags'
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
-    article_label = relationship(ArticleLabel, backref="label", passive_deletes=True)
+    article_tag = relationship(ArticleTag, backref="tag", passive_deletes=True)
 
     def __repr__(self):
-        return '<Label(id: {}, labelName: {}>'.format(self.id, self.name)
+        return '<Tag(id: {}, tagName: {}>'.format(self.id, self.name)
 
     def to_dict(self):
         return {'id': self.id,
@@ -136,7 +136,7 @@ class Article(Base):
     publish = Column(Integer, nullable=False, default=Publish.ON_AIR.value)
     user_id = Column(Integer, ForeignKey('users.id'))
     # relationship Join yapmaya yarar.
-    article_label = relationship(ArticleLabel, backref="article", passive_deletes=True)
+    article_tag = relationship(ArticleTag, backref="article", passive_deletes=True)
     comment = relationship(Comment, backref="comments", passive_deletes=True)
     user = relationship('User')
 

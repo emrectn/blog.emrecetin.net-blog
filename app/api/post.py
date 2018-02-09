@@ -6,7 +6,7 @@ from app.controllers.post import get_posts, add_post, get_post, delete_post
 from app.controllers.user import get_user, is_authorized
 
 
-bp = Blueprint('post', __name__)
+bp = Blueprint('post_api', __name__)
 api = Api(bp)
 
 # son formatında veri alınır ve kısıtlamalar getirildi.

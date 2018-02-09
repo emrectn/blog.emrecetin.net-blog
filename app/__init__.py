@@ -1,17 +1,29 @@
 from flask import Flask, render_template
+from flask_admin import Admin
 from app.api.auth import bp as auth_bp
 from app.api.post import bp as post_bp
 from app.api.user import bp as user_bp
-from app.api.label import bp as label_bp
+from app.api.tag import bp as tag_bp
 from app.api.comment import bp as comment_bp
+from app.admin import (admin_session, ModelView, User, Article,
+                       ArticleTag, Comment, Tag)
 
 
 app = Flask(__name__)
 app.config.from_object('config')
+
+admin = Admin(app, name='Admin-Panel', template_mode='bootstrap3')
+admin.add_view(ModelView(User, admin_session))
+admin.add_view(ModelView(Article, admin_session))
+admin.add_view(ModelView(Tag, admin_session))
+admin.add_view(ModelView(ArticleTag, admin_session))
+admin.add_view(ModelView(Comment, admin_session))
+
+
 app.register_blueprint(auth_bp)
 app.register_blueprint(post_bp)
 app.register_blueprint(user_bp)
-app.register_blueprint(label_bp)
+app.register_blueprint(tag_bp)
 app.register_blueprint(comment_bp)
 
 

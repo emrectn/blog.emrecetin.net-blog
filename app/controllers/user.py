@@ -1,7 +1,7 @@
 from app.models import DBSession, User, Article
 from sqlalchemy.exc import IntegrityError
 
-#
+
 def get_user(token):
     db = DBSession()
     user = db.query(User).filter(User.token == token).first()
