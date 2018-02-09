@@ -3,7 +3,8 @@
 
 # Demo Blog.Emrecetin.net
 
-I tried to create a blog site where I can write short articles basically on Python, Linux, C programming languages and Computer Engineering.
+I tried to create a blog site where I can write short articles basically on Python, Linux, C programming languages and Computer Engineering. 
+Website : http://demo.emrecetin.net/
 
 
 ## API References
