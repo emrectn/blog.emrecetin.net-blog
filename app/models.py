@@ -155,6 +155,7 @@ class Article(Base):
                 'seen': self.seen,
                 'likes': self.likes,
                 'unlikes': self.unlikes,
+                'tags': [t.tag.name for t in self.article_tag],
                 # user relationshipte user ile bağlantı sağlanır.
                 'author': self.user.fullname}
 

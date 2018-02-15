@@ -13,9 +13,10 @@
     <link href="/static/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
     <script src="/static/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/static/vue.js"></script>
 </head>
 <body>
-
+<div id="app">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -57,40 +58,10 @@
 
 <!-- BODYLEFT -->
     <div id="main-content" class="col-md-offset-1 col-md-7">
-        {% for post in posts %}
-        <div class="panel panel-default clearfix polaroid">
-            <div class="crop">
-                <img class="post-image" src="/static/{{post.image}}">
-            </div>
-            <div class="panel-heading clearfix">
-                <span class="title col-md-6 col-xs-12" style="padding: 0px;">{{ post.title }}</span>
-                <span class="col-md-6 col-xs-12">
-                    {% for t in post.tags %}
-                    <span class="semitransparent label label-warning tag">{{ t }}</span>
-                    {% endfor %}
-                </span>
-            </div>
-            <div class="panel-body">
-                {{ post.summary }}
-                <hr>
-                <span class="col-md-3 col-sm-4 col-xs-5 semitransparent indicator">
-                    <span class="glyphicon glyphicon-time"></span>
-                    <span>&nbsp{{post.date}}</span>
-                </span>
-                <span class="col-md-3 col-sm-4 col-xs-4 semitransparent indicator">
-                    <span class="glyphicon glyphicon-eye-open"></span>
-                    <span>&nbsp{{post.count}}</span>
-                </span>
-                <span class="col-md-3 col-sm-4 col-xs-3 semitransparent indicator">
-                    <span class="glyphicon glyphicon-heart"></span>
-                    <span>&nbsp{{post.count}}</span>
-                </span>
-                <button type="button" class="btn btn-primary button col-md-3 col-xs-12 ">Devam</button>
-            </div>
-        </div>
-        {% endfor %}
+        <post v-for="p in posts" :post_data="p">
+            <tag v-for="t in p.tags" :tag_data="t.name"></tag>
+        </post>
     </div>
-
 <!--BODYLEFT END  -->
 
 
@@ -128,6 +99,44 @@
         {% endfor%}
     </div>
 <!-- FEATURED END -->
-
+</div>
 </body>
+{% raw %}
+<script type="text/x-template" id="post">
+    <div class="panel panel-default clearfix polaroid">
+        <div class="crop">
+
+            <img class="post-image" :src="post_data.image">
+
+        </div>
+        <div class="panel-heading clearfix">
+            <span class="title col-md-6 col-xs-12" style="padding: 0px;">{{ post_data.title }}</span>
+            <span class="col-md-6 col-xs-12">
+                <slot></slot>
+            </span>
+        </div>
+        <div class="panel-body">
+            {{ post_data.text }}
+            <hr>
+            <span class="col-md-3 col-sm-4 col-xs-5 semitransparent indicator">
+                <span class="glyphicon glyphicon-time"></span>
+                <span>&nbsp;{{ post_data.date }}</span>
+            </span>
+            <span class="col-md-3 col-sm-4 col-xs-4 semitransparent indicator">
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <span>&nbsp;{{ post_data.seen }}</span>
+            </span>
+            <span class="col-md-3 col-sm-4 col-xs-3 semitransparent indicator">
+                <span class="glyphicon glyphicon-heart"></span>
+                <span>&nbsp;{{ post_data.likes }}</span>
+            </span>
+            <button type="button" class="btn btn-primary button col-md-3 col-xs-12 ">Devam</button>
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="tag">
+    <span class="semitransparent label label-warning tag">{{ tag_data }}</span>
+</script>
+{% endraw %}
+<script src="/static/application.js"></script>
 </html>
