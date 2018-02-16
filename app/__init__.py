@@ -32,7 +32,7 @@ app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
 
 POSTS = [
     {'title': 'Unbestarred Bandstand',
-     'summary': 'Pariatur dolor deserunt veniam esse veniam consectetur sit est pariatur sed eu ullamco labore eu est est veniam cillum commodo magna sint minim do elit minim non proident dolore anim laboris pariatur ut ea. Hildegarde Besen',
+     'summary': 'Pariatur dolor deserunt veniam esse veniam consectetur sit est pariatur sed eu ullamco labore eu est est veniam cillum commodo magna sint minim do elit minim non proident dolore anim laboris pariatur ut ea. Hildegarde Besen. Pariatur dolor deserunt veniam esse veniam consectetur sit est pariatur sed eu ullamco labore eu est est veniam cillum commodo magna sint minim do elit minim non proident dolore anim laboris pariatur ut ea. Hildegarde Besen',
      'author': 'Hermelinda Clarson',
      'date': '15/06/16',
      'tags': ['provisionless', 'acutifoliate'],
@@ -97,6 +97,7 @@ SUGGESTION_LIST = [
      'tag': 'HTML'},
 ]
 
+PARAGRAPH = 'unsatisfactoriness leiocephalous pedunculus Hemibasidiomycetes peppily toxinemia Proctotrypidae incompatibleness Freyja unexchangeableness nonsupplication cloudland malconformation fresh impredicable Japan proirrigation chronicity rectischiac cycadofilicinean sedigitate eelpout intransformable Tamarix overtrump designatum untithable Philonic unsubordinate hud untarnished astroscopy liturgism hydnocarpate Ouranos precalculate teuk lactary unbidden phyllostome Australic prosenchymatous profligacy supererogator lundress oversettle Smilodon brumal'
 
 @app.route('/')
 def index():
@@ -114,3 +115,9 @@ def login():
 @app.route('/singup')
 def singup():
     return render_template('singup.html')
+
+
+@app.route('/article')
+def article_read():
+    return render_template('article.html', sugestion_list=SUGGESTION_LIST,
+                           paragraph=PARAGRAPH)

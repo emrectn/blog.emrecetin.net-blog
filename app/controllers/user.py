@@ -29,7 +29,6 @@ def get_user_with_credentials(email, password):
 
 def login(email, password):
 
-    print(email, password)
     db = DBSession()
     u = db.query(User).filter(User.email == email,
                               User.password == password).first()
@@ -116,7 +115,7 @@ def change_password(user_id, new_password, old_password):
     return None
 
 
-def do_admin(email, token):
+def make_admin(email, token):
     db = DBSession()
     user = db.query(User).filter(User.email == email).first()
     if user:

@@ -22,11 +22,22 @@ def delete_post(post_id):
     return None
 
 
-def get_posts():
+def get_posts(page, size):
     db = DBSession()
-    all_posts = db.query(Article)
+    all_posts = db.query(
+        Article).order_by(Article.date.desc()).offset(page*size).limit(size)
+    all_posts = [p.to_dict() for p in all_posts]
     db.close()
-    return [p.to_dict() for p in all_posts]
+    return all_posts
+
+
+def get_populars(size=5):
+    db = DBSession()
+    populars = db.query(Article).order_by(
+        Article.likes.desc()).limit(size).from_self().order_by(Article.date.desc())
+    populars = [p.to_dict() for p in populars]
+    db.close()
+    return populars
 
 
 def add_post(title, text, date, user_id, image="/static/0.jpg"):

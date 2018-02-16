@@ -16,90 +16,81 @@
     <script src="/static/vue.js"></script>
 </head>
 <body>
-<div id="app">
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="http://www.emrecetin.net/">Emre Çetin</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#">ANASAYFA </a></li>
-            <li><a href="#about">HAKKIMIZDA</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DERSLER <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-            <li><a href="#contact">İLETİŞİM</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/login">Kayıt Ol</a></li>
-            <li><a href="/singup">Giriş</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-
-<!-- BODYLEFT -->
-    <div id="main-content" class="col-md-offset-1 col-md-7">
-        <post v-for="p in posts" :post_data="p">
-            <tag v-for="t in p.tags" :tag_data="t.name"></tag>
-        </post>
-    </div>
-<!--BODYLEFT END  -->
-
-
-<!-- TOPFIVE -->
-    <div id="main-content" class="col-md-3 col-xs-12">
-        <div class="panel panel-default clearfix polaroid">
-            <div class="panel-heading">
-                <h3><span class="glyphicon glyphicon-menu-down">&nbsp</span>{{subjects.header}}</h3></div>
-            <ul class="list-group">
-                {% for sbj in subjects.tags %}
-                <li onmouseover="this.classList.add('active')"
-                    onmouseout="this.classList.remove('active')"
-                     class="list-group list-group-item">
-                     <span class="glyphicon glyphicon-file spancolor"></span>
-                    <span>&nbsp{{sbj}}</span></li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-<!-- TOPFIVE END -->
-
-<!-- FEATURED  -->
-
-    <div id="suggestion-list" class="col-md-3">
-        {% for i in sugestion_list%}
-            <div class="panel panel-default clearfix shadow">
-                <div class="view overlay">
-                    <img class="post-image" src="{{i.image}}">
-                    <div class="mask">
-                        <p>{{i.tag}}</p>
-                    </div>
-                </div>
-                <div class="panel-body">{{i.summary}}</div>
+    <div id="app">
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="http://www.emrecetin.net/">Emre Çetin</a>
             </div>
-        {% endfor%}
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="#">ANASAYFA </a></li>
+                <li><a href="#about">HAKKIMIZDA</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DERSLER <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li>
+                <li><a href="#contact">İLETİŞİM</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/login">Kayıt Ol</a></li>
+                <li><a href="/singup">Giriş</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+
+
+    <!-- BODYLEFT -->
+        <div id="main-content" class="col-md-offset-1 col-md-7">
+            <post v-for="p in posts" :post_data="p">
+                <tag v-for="t in p.tags" :tag_data="t.name"></tag>
+            </post>
+        </div>
+    <!--BODYLEFT END  -->
+
+
+    <!-- TOPFIVE -->
+        <div id="main-content" class="col-md-3 col-xs-12">
+            <div class="panel panel-default clearfix polaroid">
+                <div class="panel-heading">
+                    <h3><span class="glyphicon glyphicon-menu-down">&nbsp</span>{{subjects.header}}</h3></div>
+                <ul class="list-group">
+                    {% for sbj in subjects.tags %}
+                    <li onmouseover="this.classList.add('active')"
+                        onmouseout="this.classList.remove('active')"
+                         class="list-group list-group-item">
+                         <span class="glyphicon glyphicon-file spancolor"></span>
+                        <span>&nbsp{{sbj}}</span></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    <!-- TOPFIVE END -->
+
+    <!-- FEATURED  -->
+
+        <div id="suggestion-list" class="col-md-3">
+            <suggestion v-for="s in suggestion_list" :suggestion_data="s">
+            </suggestion>>
+        </div>
+    <!-- FEATURED END -->
     </div>
-<!-- FEATURED END -->
-</div>
 </body>
 {% raw %}
 <script type="text/x-template" id="post">
@@ -134,8 +125,22 @@
         </div>
     </div>
 </script>
+
 <script type="text/x-template" id="tag">
     <span class="semitransparent label label-warning tag">{{ tag_data }}</span>
+</script>
+
+<script type="text/x-template" id="suggestion">
+    <div class="panel panel-default clearfix shadow">
+        <div class="view overlay">
+            <img class="post-image" src="{{i.image}}">
+            <div class="mask">
+                <p>{{i.tag}}</p>
+            </div>
+        </div>
+        <div class="panel-body">{{i.summary}}</div>
+    </div>
+
 </script>
 {% endraw %}
 <script src="/static/application.js"></script>

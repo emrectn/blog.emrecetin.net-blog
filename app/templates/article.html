@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Emre Cetin       </title>
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <link href="/static/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="/static/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+<body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://www.emrecetin.net/">Emre Çetin</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">ANASAYFA </a></li>
+            <li><a href="#about">HAKKIMIZDA</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DERSLER <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+            <li><a href="#contact">İLETİŞİM</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/login">Kayıt Ol</a></li>
+            <li><a href="/singup">Giriş</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<!-- BODYLEFT -->
+<div id="main-content" class="col-md-offset-1 col-md-7">
+  <div class="panel panel-default clearfix polaroid ">
+    <div class="crop-article">
+      <img class="post-image" src="/static/0.png">
+    </div>
+  </div>
+  <div class="panel panel-default clearfix polaroid">
+    <div class="panel-heading clearfix">
+      <span class="title col-md-6 col-xs-12"> Dünyada Gezilcek 5 ülke</span>
+      <span class="col-md-6 col-xs-12">
+        <span class="semitransparent label label-warning tag">Education</span>
+        <span class="semitransparent label label-warning tag">Sport</span>
+      </span>
+    </div>
+    <div class="panel-body">
+      <p class="paragraph"></p>
+      <p class="paragraph">&nbsp Diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine
+      diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine</p>
+
+      <hr>
+      <p class="paragraph">&nbsp Diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine
+      diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine</p>
+
+      <hr>
+      <p class="paragraph">&nbsp Diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine
+      diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine</p>
+    </div>
+    <hr>
+    <div class="panel-body">
+      <div class="panel-heading clearfix">
+        <span class="title col-md-6 col-xs-12">Yorum</span>
+      </div>
+      <div class="panel-body">
+        {% for i in range(0,3) %}
+        <div class="panel panel-default clearfix polaroid">
+          <div class="panel-body">
+            <p>Harika Olmuş Elinize Sağlık</p>
+            <hr>
+            {% for i in range(0,2) %}
+              <div class="panel panel-default clearfix polaroid">
+                <div class="panel-body">
+                  <p>Harika Olmuş Elinize Sağlık</p>
+                </div>
+            </div>
+            {% endfor %}
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+      </div>
+
+    <div class="panel-footer footer-body">Designer By Emre Cetin</div>
+  </div>
+</div>
+
+
+
+<!-- BODYLEFT  END -->
+
+
+<!-- FEATURED  -->
+
+    <div id="main-content" class="col-md-3">
+        {% for i in sugestion_list%}
+            <div class="panel panel-default clearfix shadow">
+                <div class="view overlay">
+                    <img class="post-image" src="{{i.image}}">
+                    <div class="mask">
+                        <p>{{i.tag}}</p>
+                    </div>
+                </div>
+                <div class="panel-body">{{i.summary}}</div>
+            </div>
+        {% endfor%}
+    </div>
+<!-- FEATURED END -->
+
+

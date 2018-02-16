@@ -34,6 +34,9 @@ app = new Vue({
         'post': {
             'template': '#post',
             'props': ['post_data']
+        },
+        'suggestion': {
+            'template': '#suggestion',
         }
     }
 })

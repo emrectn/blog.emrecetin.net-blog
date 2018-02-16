@@ -32,8 +32,10 @@
     overflow: hidden;
 }
 
-#main-content .panel {
-    margin-bottom: 60px;
+.crop-article {
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
 }
 
 #main .panel-body {
@@ -138,7 +140,18 @@
     color: white;
 }
 
-.mousehover{
+.mousehover {
     border-left: 1px;
     border-color: rgb(46, 109, 164);
+}
+
+.paragraph {
+    padding: 5px;
+}
+
+.footer-body span{
+}
+
+.max-length {
+    max-height: 20px;
 }

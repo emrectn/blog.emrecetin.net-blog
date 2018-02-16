@@ -2,7 +2,8 @@ from flask import Blueprint, request, abort
 from flask_restful import Api, Resource
 from schema import Schema, And, Optional, SchemaError, Use
 from datetime import datetime
-from app.controllers.post import get_posts, add_post, get_post, delete_post
+from app.controllers.post import (get_posts, add_post, get_post, delete_post,
+                                  get_populars)
 from app.controllers.user import get_user, is_authorized
 
 
@@ -53,7 +54,7 @@ class Post(Resource):
             # add user_id to dictionary
             data['user_id'] = user['id']
         except SchemaError:
-            print("400 Geldi")
+            print("Schema Error")
             abort(400)
 
         add_post(**data)
@@ -82,7 +83,13 @@ class Post(Resource):
 class Posts(Resource):
     """docstring for Post"""
     def get(self):
-        data = get_posts()
+        mode = request.args.get("mode")
+        page_size = int(request.args.get("ps", 6))
+        page = int(request.args.get("p", 0))
+        if not mode:
+            data = get_posts(page, page_size)
+        elif mode == 'popular':
+            data = get_populars()
         return {'status': 'OK', 'data': data}
 
 api.add_resource(Post, '/api/post')
