@@ -12,10 +12,13 @@
     </script>
     <link href="/static/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/article.css">
     <script src="/static/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/static/vue.js"></script>
 </head>
 <body>
-
+<div id="article_app" style="display: inline-block;">
+  <div id="app">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -55,82 +58,90 @@
     </nav>
 
 <!-- BODYLEFT -->
-<div id="main-content" class="col-md-offset-1 col-md-7">
-  <div class="panel panel-default clearfix polaroid ">
-    <div class="crop-article">
-      <img class="post-image" src="/static/0.png">
-    </div>
-  </div>
-  <div class="panel panel-default clearfix polaroid">
-    <div class="panel-heading clearfix">
-      <span class="title col-md-6 col-xs-12"> Dünyada Gezilcek 5 ülke</span>
-      <span class="col-md-6 col-xs-12">
-        <span class="semitransparent label label-warning tag">Education</span>
-        <span class="semitransparent label label-warning tag">Sport</span>
-      </span>
-    </div>
-    <div class="panel-body">
-      <p class="paragraph"></p>
-      <p class="paragraph">&nbsp Diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine
-      diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine</p>
-
-      <hr>
-      <p class="paragraph">&nbsp Diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine
-      diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine</p>
-
-      <hr>
-      <p class="paragraph">&nbsp Diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine
-      diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine</p>
-    </div>
-    <hr>
-    <div class="panel-body">
-      <div class="panel-heading clearfix">
-        <span class="title col-md-6 col-xs-12">Yorum</span>
-      </div>
-      <div class="panel-body">
-        {% for i in range(0,3) %}
-        <div class="panel panel-default clearfix polaroid">
-          <div class="panel-body">
-            <p>Harika Olmuş Elinize Sağlık</p>
-            <hr>
-            {% for i in range(0,2) %}
-              <div class="panel panel-default clearfix polaroid">
-                <div class="panel-body">
-                  <p>Harika Olmuş Elinize Sağlık</p>
-                </div>
-            </div>
-            {% endfor %}
-          </div>
-
+    <div id="main-content" class="col-md-offset-1 col-md-7">
+      <div class="panel panel-default clearfix polaroid ">
+        <div class="crop-article">
+          <img class="post-image" src="/static/0.jpg">
         </div>
-        {% endfor %}
       </div>
-      </div>
+      <div class="panel panel-default clearfix polaroid">
+        <div class="panel-heading clearfix">
+          <span class="title col-md-6 col-xs-12"> Dünyada Gezilcek 5 ülke</span>
+          <span class="col-md-6 col-xs-12">
+            <span class="semitransparent label label-warning tag">Education</span>
+            <span class="semitransparent label label-warning tag">Sport</span>
+          </span>
+        </div>
+        <div class="panel-body">
+          <p class="paragraph">&nbsp Diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine
+          diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine</p>
+          <blockquote>
+            En zayıf oldugunuz an bütün herkes tarafından desteklenir gibi göründüğünüz andır. Aslında hiç kimse desteklememektedir sizi; size verilen evet sadece bir bekleyişi dile getirmektedir, ve o evetin ardında daima fırtınalı bir gün yatar.
+          </blockquote>
 
-    <div class="panel-footer footer-body">Designer By Emre Cetin</div>
+          <hr>
+          <p class="paragraph">&nbsp Diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine
+          diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine</p>
+          <pre>
+            def post(self, user):
+              post_id = request.json.get("post_id")
+
+              if user['rank'] in (0, 1):
+                add_tag(data, post_id)
+              return {'status': 'OK'}
+          </pre>
+          <hr>
+          <p class="paragraph">&nbsp Diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine
+          diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine</p>
+          <hr>
+          <pre>
+            def post(self, user):
+              post_id = request.json.get("post_id")
+
+              if user['rank'] in (0, 1):
+                add_tag(data, post_id)
+              return {'status': 'OK'}
+          </pre>
+        </div>
+        <hr>
+        <nav>
+          <ul class="pager">
+            <li><a href="#">Previous</a></li>
+            <li><a href="#">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- BODYLEFT  END -->
+
+    <!-- FEATURED  -->
+    <div id="main-content" class="col-md-3">
+      <suggestion v-for="s in suggestion_list" :suggestion_data="s">
+      </suggestion>
+    </div>
+  <!--       <div id="main-content" class="col-md-3">
+            {% for i in sugestion_list%}
+                <div class="panel panel-default clearfix shadow">
+                    <div class="view overlay">
+                        <img class="post-image" src="{{i.image}}">
+                        <div class="mask">
+                            <p>{{i.tag}}</p>
+                        </div>
+                    </div>
+                    <div class="panel-body">{{i.summary}}</div>
+                </div>
+            {% endfor%}
+        </div> -->
+    <!-- FEATURED END -->
   </div>
 </div>
-
-
-
-<!-- BODYLEFT  END -->
-
-
-<!-- FEATURED  -->
-
-    <div id="main-content" class="col-md-3">
-        {% for i in sugestion_list%}
-            <div class="panel panel-default clearfix shadow">
-                <div class="view overlay">
-                    <img class="post-image" src="{{i.image}}">
-                    <div class="mask">
-                        <p>{{i.tag}}</p>
-                    </div>
-                </div>
-                <div class="panel-body">{{i.summary}}</div>
-            </div>
-        {% endfor%}
-    </div>
-<!-- FEATURED END -->
-
+<footer class="blog-footer">
+      <p>Copyright  ©<a href="">2017</a> Tüm Hakları Saklıdır. <a href="https:emrecetin.net">blog.emrecetin.net</a></p>
+      <p>
+        <a href="#">Yukarı Çık</a>
+      </p>
+    </footer>
+</body>
+<script src="/static/application.js"></script>
+</html>
 

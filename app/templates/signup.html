@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>Kayıt Ol</title>
     <link href="/static/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/signin.css">
   </head>
@@ -13,16 +13,18 @@
     <div class="container">
 
       <form class="form-signin" _lpchecked="1" action="/api/auth" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">Kayıt Ol</h2>
+
+        <label for="inputEmail" class="sr-only">username</label>
+        <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Ad" required="" autofocus="" autocomplete="off">
+
+        <label for="inputEmail" class="sr-only">surname</label>
+        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Soyad" required="" autofocus="" autocomplete="off">
         <label for="inputEmail" class="sr-only">Username</label>
-        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" autocomplete="off">
-        label for="inputEmail" class="sr-only">Username</label>
-        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" autocomplete="off">
-        label for="inputEmail" class="sr-only">Username</label>
-        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" autocomplete="off">
+        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" autocomplete="off">
 
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="" autocomplete="off" >
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Parola" required="" autocomplete="off" >
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me

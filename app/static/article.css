@@ -1,0 +1,46 @@
+/*
+ * Footer
+ */
+
+.blog-footer {
+  color: #999;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+}
+.blog-footer p:last-child {
+  margin-bottom: 0;
+}
+
+/* Pagination */
+.pager {
+  margin-bottom: 20px;
+}
+.pager > li > a {
+  width: 140px;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.blog-footer p{
+  margin: 0 0 2px;
+}
+
+/*
+ * Blog posts
+ */
+
+.blog-post {
+  padding: 15px;
+  margin-bottom: 60px;
+}
+.blog-post-title {
+  margin-bottom: 5px;
+  font-size: 40px;
+}
+.blog-post-meta {
+  padding: 15px;
+  margin-bottom: 20px;
+  color: #999;
+}

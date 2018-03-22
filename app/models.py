@@ -150,7 +150,7 @@ class Article(Base):
         return {'id': self.id,
                 'title': self.title,
                 'text': self.text,
-                'date': str(self.date),
+                'date': self.date.strftime('%Y-%m-%d %H:%M:%S.%f'),
                 'image': self.image,
                 'seen': self.seen,
                 'likes': self.likes,

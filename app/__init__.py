@@ -92,9 +92,6 @@ SUGGESTION_LIST = [
     {'image':  '/static/12.jpg',
      'summary': 'Lorem ipsum aliquip et ad',
      'tag': 'C++'},
-    {'image':  '/static/11.jpg',
-     'summary': 'Et anim id ea aliquip et',
-     'tag': 'HTML'},
 ]
 
 PARAGRAPH = 'unsatisfactoriness leiocephalous pedunculus Hemibasidiomycetes peppily toxinemia Proctotrypidae incompatibleness Freyja unexchangeableness nonsupplication cloudland malconformation fresh impredicable Japan proirrigation chronicity rectischiac cycadofilicinean sedigitate eelpout intransformable Tamarix overtrump designatum untithable Philonic unsubordinate hud untarnished astroscopy liturgism hydnocarpate Ouranos precalculate teuk lactary unbidden phyllostome Australic prosenchymatous profligacy supererogator lundress oversettle Smilodon brumal'
@@ -112,9 +109,9 @@ def login():
 
 
 # Decorator
-@app.route('/singup')
-def singup():
-    return render_template('singup.html')
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
 
 
 @app.route('/article')

@@ -1,0 +1,33 @@
+<div v-show="selected=='home'">
+    <div class="col-md-12">
+        <div id="main-content" class="col-md-offset-1 col-md-7">
+            <post v-for="p in posts" :post_data="p">
+                <span class="col-md-6 col-xs-12">
+                    <!-- <tag v-for="t in p.tags" :tag_data="t"></tag> -->
+                </span>
+            </post>
+        </div>
+        <div class="col-md-3 suggestion-list">
+            <div id="main-content" class="col-md-12 col-xs-12">
+                <div class="panel panel-default clearfix polaroid">
+                    <div class="panel-heading">
+                        <h3><span class="glyphicon glyphicon-menu-down">&nbsp;</span>{{subjects.header}}</h3></div>
+                    <ul class="list-group">
+                        {% for sbj in subjects.tags %}
+                        <li onmouseover="this.classList.add('active')"
+                            onmouseout="this.classList.remove('active')"
+                             class="list-group list-group-item">
+                             <span class="glyphicon glyphicon-file spancolor"></span>
+                            <span>&nbsp{{sbj}}</span></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div id="main-content" class="col-md-12">
+                <suggestion v-for="s in suggestion_list" :suggestion_data="s">
+                </suggestion>
+            </div>
+
+        </div>
+    </div>
+</div>

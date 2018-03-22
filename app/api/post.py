@@ -18,6 +18,8 @@ CREATE_POST_SCHEMA = Schema({
     'date': And(str, Use(lambda s: datetime.strptime(
         s, '%Y-%m-%d %H:%M:%S.%f'))),
     Optional('image'): str,
+    Optional('seen'): int,
+    Optional('likes'): int,
 })
 
 

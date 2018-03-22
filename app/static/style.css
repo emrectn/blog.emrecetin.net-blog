@@ -1,3 +1,10 @@
+html, body {
+  position:relative;
+  overflow-x:hidden;
+  height: 100%;
+}
+
+
 .navbar-default {
     background: #fff;
 }
@@ -8,17 +15,19 @@
     color: #008ed6;
 }
 
+.main {
+    position: relative;
+    top: 51px;
+    margin-bottom: 64px;
+    padding: 8px;
+}
+
 #main-content{
     position: relative;
     float: left;
-    margin-top: 64px;
+    padding: 0px;
 
 }
-
- #suggestion-list {
-    position: relative;
-    float: left;
- }
 
 .post-image {
     width: 100%;
@@ -33,13 +42,10 @@
 }
 
 .crop-article {
+    border-radius: 4px;
     width: 100%;
     max-height: 400px;
     overflow: hidden;
-}
-
-#main .panel-body {
-    padding-top: 50px;
 }
 
 #main-content .panel .footer{
@@ -51,13 +57,10 @@
     font-size: 17px;
 }
 
-#main-content .panel ul .spancolor{
+#main-content .panel .panel-heading, ul .spancolor{
     color: #274d6f;
 }
 
-#main-content .panel .panel-heading{
-    color: #274d6f;
-}
 .polaroid {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -93,7 +96,7 @@
 
 
 .tag {
-    margin-top: 12px;
+    margin-top: 10px;
     margin-left: 4px;
     float: right;
 }
@@ -154,4 +157,14 @@
 
 .max-length {
     max-height: 20px;
+}
+
+@media (max-width: 991px) {
+    .suggestion-list {
+        padding: 0;
+    }
+
+    .navbar-fixed-bottom {
+        display: none;
+    }
 }

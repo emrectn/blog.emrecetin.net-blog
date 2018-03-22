@@ -1,9 +1,26 @@
 import requests
 import random
 from faker import Faker
+from itertools import cycle
 BASE_URL = 'http://localhost:5000/api'
 
 f = Faker()
+
+
+IMAGES = cycle([
+    '/static/0.jpg',
+    '/static/1.jpg',
+    '/static/2.jpg',
+    '/static/3.jpg',
+    '/static/4.jpg',
+    '/static/5.jpg',
+    '/static/11.jpg',
+    '/static/12.jpg',
+])
+
+USER_COUNT = 4
+POST_COUNT = 11
+COMMENT_COUNT = 20
 
 
 def generate_user():
@@ -14,24 +31,27 @@ def generate_user():
 
 
 def generate_post():
-    return {'title': f.text(16).upper(),
-            'text': '\n'.join(f.paragraphs(7)),
-            'date': '2018-01-' + str(f.random_int(0, 30)) + ' 20:01:09.123132'}
-
-USER_COUNT = 4
-POST_COUNT = 11
-COMMENT_COUNT = 20
-IMG_COUNTER = 0
+    title = f.text(16).split(".")[0]
+    title[0].upper()
+    title[-1].upper()
+    return {'title': title,
+            'text': '\n'.join(f.paragraphs(3)),
+            'image': next(IMAGES),
+            'date': f.date_time().strftime('%Y-%m-%d %H:%M:%S.%f'),
+            'seen': f.random_int(0, 999),
+            'likes': f.random_int(0, 999)}
 
 
 def generate_tag(post_id):
-    return {'tags': f.text(7),
+    text = f.text(7).split(".")[0]
+    text.upper()
+    return {'tags': text,
             'post_id': post_id}
 
 
 def generate_comment():
     return {'text': f.text(50),
-            'date': '2018-01-' + str(f.random_int(0, 30)) + ' 20:01:09.123132',
+            'date': f.date_time().strftime('%Y-%m-%d %H:%M:%S.%f'),
             'post_id': f.random_int(0, POST_COUNT-1)}
 
 
@@ -42,7 +62,8 @@ def create_user(user):
               'password': user['password'],
               'fullname': user['fullname']})
 
-    return print("{} \n".format(r.json()))
+    print("{} \n".format(r.json()))
+    return
 
 
 def delete_user(token):
@@ -50,7 +71,9 @@ def delete_user(token):
     r = requests.delete(
         BASE_URL + '/user',
         headers={'X-Token': token})
-    return print("{} \n".format(r.json()))
+
+    print("{} \n".format(r.json()))
+    return
 
 
 def change_password(token, user):
@@ -61,7 +84,8 @@ def change_password(token, user):
         json={'new_password': f.password(),
               'old_password': user['password']})
 
-    return print("{} \n".format(r.json()))
+    print("{} \n".format(r.json()))
+    return
 
 
 def make_admin(username, token):
@@ -70,7 +94,9 @@ def make_admin(username, token):
         BASE_URL + '/makeadmin',
         json={'username': username,
               'token': token})
-    return print("{} \n".format(r.json()))
+
+    print("{} \n".format(r.json()))
+    return
 
 
 def login(email, password):
@@ -86,7 +112,8 @@ def post_get(post_id):
     r = requests.get(
         BASE_URL + '/post?id=' + str(post_id))
 
-    return print("{} \n".format(r.json()))
+    print("{} \n".format(r.json()))
+    return
 
 
 def post_get_all():
@@ -94,7 +121,8 @@ def post_get_all():
     r = requests.get(
         BASE_URL + '/posts')
 
-    return print("{} \n".format(r.json()))
+    print("{} \n".format(r.json()))
+    return
 
 
 def post_create(token, post):
@@ -106,8 +134,12 @@ def post_create(token, post):
         json={'title': post['title'],
               'text': post['text'],
               'date': post['date'],
-              'image': '/static/' + str(IMG_COUNTER) + '.jpg'})
-    return print("{} \n".format(r.json()))
+              'image': post['image'],
+              'seen': post['seen'],
+              'likes': post['likes']})
+
+    print("{} \n".format(r.json()))
+    return
 
 
 def post_delete(token, post_id):
@@ -116,7 +148,8 @@ def post_delete(token, post_id):
         BASE_URL + '/post?id=' + str(post_id),
         headers={'X-Token': token})
 
-    return print("{} \n".format(r.json()))
+    print("{} \n".format(r.json()))
+    return
 
 
 def tag_create(token, tag):
@@ -127,7 +160,8 @@ def tag_create(token, tag):
         json={'tags': tag['tags'],
               'post_id': tag['post_id']})
 
-    return print("{} \n".format(r.json()))
+    print("{} \n".format(r.json()))
+    return
 
 
 def tag_delete(token, tag_id):
@@ -136,7 +170,8 @@ def tag_delete(token, tag_id):
         BASE_URL + '/tag?tag_id=' + str(tag_id),
         headers={'X-Token': token})
 
-    return print("{} \n".format(r.json()))
+    print("{} \n".format(r.json()))
+    return
 
 
 def comment_get_to_article(post_id):
@@ -144,7 +179,8 @@ def comment_get_to_article(post_id):
     r = requests.get(
         BASE_URL + '/comment?post_id=' + str(post_id))
 
-    return print("{} \n".format(r.json()))
+    print("{} \n".format(r.json()))
+    return
 
 
 def comment_get_to_user(user_id):
@@ -152,7 +188,8 @@ def comment_get_to_user(user_id):
     r = requests.get(
         BASE_URL + '/comments?user_id=' + str(user_id))
 
-    return print("{} \n".format(r.json()))
+    print("{} \n".format(r.json()))
+    return
 
 
 def comment_create(token, comment):
@@ -163,7 +200,8 @@ def comment_create(token, comment):
         json={'text': comment['text'],
               'date': comment['date']})
 
-    return print("{} \n".format(r.json()))
+    print("{} \n".format(r.json()))
+    return
 
 
 def comment_delete(token, comment_id):
@@ -172,7 +210,8 @@ def comment_delete(token, comment_id):
         BASE_URL + '/comment?comment_id=' + str(comment_id),
         headers={'X-Token': token})
 
-    return print("{} \n".format(r.json()))
+    print("{} \n".format(r.json()))
+    return
 
 
 def comment_publish(token, comment_id):
@@ -181,7 +220,8 @@ def comment_publish(token, comment_id):
         BASE_URL + '/comment?comment_id=' + str(comment_id),
         headers={'X-Token': token})
 
-    return print("{} \n".format(r.json()))
+    print("{} \n".format(r.json()))
+    return
 
 if __name__ == '__main__':
     # CREATE USER
@@ -234,11 +274,12 @@ if __name__ == '__main__':
     for tag in tags:
         tag_create(random.choice(users)['token'], tag)
 
+    tags = [generate_tag(i+1) for i in range(POST_NUMBER-1)]
+    for tag in tags:
+        tag_create(random.choice(users)['token'], tag)
+
     # TAG DELETE
-    try:
-        tag_delete(random.choice(users)['token'], len(tags))
-    except:
-        print('{\'status\': \'Error\'}')
+    # tag_delete(random.choice(users)['token'], len(tags))
 
     # COMMENT CREATE
     comments = [generate_comment() for _ in range(COMMENT_COUNT)]
@@ -256,4 +297,10 @@ if __name__ == '__main__':
 
     # COMMENT PUBLISH
     for i in range(5):
-        comment_publish(random.choice(users)['token'], comments.index(random.choice(comments)) + 1)
+        try:
+            index = comments.index(random.choice(comments)) + 1
+            comment_publish(random.choice(users)['token'], index)
+        except None-Type:
+            print("Böyle bir post bulunamadi : {}".format(index))
+            pass
+

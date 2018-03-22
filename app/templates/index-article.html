@@ -1,0 +1,68 @@
+<!-- BODYLEFT -->
+<div v-show="selected=='article'">
+    <div class="col-md-12 div-scroll">
+      <div id="main-content" class="col-md-offset-1 col-md-7">
+        <div class="panel panel-default clearfix polaroid ">
+          <div class="crop-article">
+            <img class="post-image" src="/static/0.jpg">
+          </div>
+        </div>
+        <div class="panel panel-default clearfix polaroid">
+          <div class="panel-heading clearfix">
+            <span class="title col-md-6 col-xs-12"> Dünyada Gezilcek 5 ülke</span>
+            <span class="col-md-6 col-xs-12">
+              <span class="semitransparent label label-warning tag">Education</span>
+              <span class="semitransparent label label-warning tag">Sport</span>
+            </span>
+          </div>
+          <div class="panel-body">
+            <p class="paragraph">&nbsp Diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine
+            diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine</p>
+            <blockquote>
+              En zayıf oldugunuz an bütün herkes tarafından desteklenir gibi göründüğünüz andır. Aslında hiç kimse desteklememektedir sizi; size verilen evet sadece bir bekleyişi dile getirmektedir, ve o evetin ardında daima fırtınalı bir gün yatar.
+            </blockquote>
+
+            <hr>
+            <p class="paragraph">&nbsp Diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine
+            diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine</p>
+            <pre>
+              def post(self, user):
+                post_id = request.json.get("post_id")
+
+                if user['rank'] in (0, 1):
+                  add_tag(data, post_id)
+                return {'status': 'OK'}
+            </pre>
+            <hr>
+            <p class="paragraph">&nbsp Diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine
+            diathermacy illusive reperception indoctrinize botanizer subequally Lucrece Capitolian stigma philotheosophical orchestrion sulpholipin anaglyphoscope Albuginaceae pyreticosis calliper lunulated dynamitical bepicture ownness divine resift turbulent morpholine</p>
+            <hr>
+            <pre>
+              def post(self, user):
+                post_id = request.json.get("post_id")
+
+                if user['rank'] in (0, 1):
+                  add_tag(data, post_id)
+                return {'status': 'OK'}
+            </pre>
+          </div>
+          <hr>
+          <nav>
+            <ul class="pager">
+              <li><a href="#">Previous</a></li>
+              <li><a href="#">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- BODYLEFT  END -->
+
+      <!-- FEATURED  -->
+      <div class="col-md-3 suggestion-list">
+        <div id="main-content" class="col-md-12 col-xs-12">
+          <suggestion v-for="s in suggestion_list" :suggestion_data="s">
+          </suggestion>
+        </div>
+      </div>
+    </div>
+</div>

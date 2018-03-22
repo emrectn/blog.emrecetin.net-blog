@@ -40,7 +40,7 @@ def get_populars(size=5):
     return populars
 
 
-def add_post(title, text, date, user_id, image="/static/0.jpg"):
+def add_post(title, text, date, user_id, image="/static/0.jpg", seen=0, likes=0):
     db = DBSession()
     # eger keyword arguman olarak eklmessek, veritabanında eslesme olmayacagı
     # icin hata alınır.
@@ -48,7 +48,9 @@ def add_post(title, text, date, user_id, image="/static/0.jpg"):
                 text=text,
                 date=date,
                 user_id=user_id,
-                image=image)
+                image=image,
+                seen=seen,
+                likes=likes)
     db.add(p)
     db.commit()
     db.close()
