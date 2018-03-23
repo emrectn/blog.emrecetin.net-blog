@@ -4,6 +4,10 @@ html, body {
   height: 100%;
 }
 
+body {
+    overflow-y: scroll; /* has to be scroll, not auto */
+     -webkit-overflow-scrolling: touch;
+}
 
 .navbar-default {
     background: #fff;
@@ -167,4 +171,17 @@ html, body {
     .navbar-fixed-bottom {
         display: none;
     }
+}
+
+
+@media (max-width: 767.98px) {
+    .title {
+    font-size: 20px;
+    }
+}
+
+pre {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
 }

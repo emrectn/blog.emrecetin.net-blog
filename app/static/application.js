@@ -55,7 +55,7 @@ Vue.component('tag',{
 app = new Vue({
     'el': '#app',
     'data': {
-        'selected': 'contact',
+        'selected': 'article',
         'posts': [],
         'suggestion_list': []
     },
@@ -106,15 +106,19 @@ app_menu = new Vue({
         'home_onclick': function() {
             app.selected = 'home';
             document.title = 'Anasayfa';
+            document.getElementById('navbar').classList.remove('in')
+            console.log(document.getElementById('navbar'))
         },
         'article_onclick': function() {
 
             app.selected = 'article';
             document.title = 'Article';
+            document.getElementById('navbar').classList.remove('in')
         },
         'contact_onclick': function() {
             app.selected = 'contact';
             document.title = 'İletişim';
+            document.getElementById('navbar').classList.remove('in')
         },
     }
 });
