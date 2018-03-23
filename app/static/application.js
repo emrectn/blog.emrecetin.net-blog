@@ -55,7 +55,7 @@ Vue.component('tag',{
 app = new Vue({
     'el': '#app',
     'data': {
-        'selected': 'article',
+        'selected': 'home',
         'posts': [],
         'suggestion_list': []
     },
