@@ -78,6 +78,6 @@ class MakeAdmin(Resource):
         if status:
             return{'status': 'OK'}
         abort(400)
-
+k
 api.add_resource(User, '/api/user')
 api.add_resource(MakeAdmin, '/api/makeadmin')
